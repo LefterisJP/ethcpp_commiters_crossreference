@@ -50,20 +50,13 @@ def find_files(cpp_path):
 if __name__ == "__main__":
     arg_num = len(sys.argv)
     cpp_path = "."
-    dirs_only = False
-    if arg_num == 3:
-        if sys.argsv[2] == "-d":
-            dirs_only = True
-        else:
-            print("Second argument, if existing, "
-                  "must be -d to print only module/dirs")
-            sys.exit(1)
+
     if arg_num == 2:
-        if sys.argv[1] == "-d":
-            dirs_only = True
-        else:
-            cpp_path = sys.argv[1]
-    elif arg_num != 1:
+        cpp_path = sys.argv[1]
+    elif arg_num == 1:
+        print("Usage:\n\tcrossreference.py CPPETHEREUM-PATH")
+        sys.exit(1)
+    else:
         print("Incorrect number of arguments given {}".format(arg_num))
         sys.exit(1)
 
@@ -76,17 +69,8 @@ if __name__ == "__main__":
     allf = find_files(cpp_path)
     cleanf = allf.difference(dirtyf)
 
-    if dirs_only:
-        print("These modules contain code that can be safely changed. For file "
-              "level details remove the -d argument.\n\n")
-        modules = set()
-        for f in cleanf:
-            modules.add(topdir(f))
-        for m in modules:
-            print(m)
-    else:
-        print("This is a list of files touched only by people who have signed\n\n")
-        flist = list(cleanf)
-        flist.sort()
-        for f in flist:
-            print(f)
+    print("This is a list of files touched only by people who have signed\n\n")
+    flist = list(cleanf)
+    flist.sort()
+    for f in flist:
+        print(f)
