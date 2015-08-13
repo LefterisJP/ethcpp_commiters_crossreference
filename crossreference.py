@@ -4,12 +4,8 @@ import os
 import subprocess
 
 authors = [
-    'artur.zawlocki@imapp.pl',
-    'caktux@gmail.com',
     'guanqun.lu@gmail.com',
-    'giacomo.tazzari@gmail.com',
     'daniel.hams@gmail.com',
-    'janwillem.penterman@ddbgroup.nl',
     'elombrozo@gmail.com',
     'josephyzhou@gmail.com',
     'markobarko@gmail.com',
